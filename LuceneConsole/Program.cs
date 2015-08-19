@@ -17,10 +17,9 @@ namespace LuceneConsole
         {
             //ClearIndexAndDb();
             //GenerateSampleData(100000).Wait();
-
-
+            
             var startTime = DateTime.Now;
-            var dbSearchResult = Db.SampleModels.Count(i=>i.ViewCount == 43);
+            var dbSearchResult = Db.SampleModels.Find(new Guid("26A033D4-EA33-4CF5-A24A-FFF684BD16C5"));
             Console.WriteLine("Databse process");
             Console.WriteLine("result: " + dbSearchResult);
             Console.WriteLine("Time:" + (DateTime.Now - startTime));
@@ -28,7 +27,7 @@ namespace LuceneConsole
             Console.WriteLine();
             
             startTime = DateTime.Now;
-            var luceneSearchResult = LuceneRepository<SampleModel>.Search("43", "ViewCount");
+            var luceneSearchResult = LuceneRepository<SampleModel>.SearchById("26A033D4-EA33-4CF5-A24A-FFF684BD16C5");
             Console.WriteLine("Lucene process");
             Console.WriteLine("result: " + luceneSearchResult.Count());
             Console.WriteLine("Time:" + (DateTime.Now - startTime));            
